@@ -13,6 +13,7 @@ namespace comportswinforms
 	public partial class Form1 : Form
 	{
 		ComPortsService _comPortsService;
+		string currentPort;
 
 		public Form1()
 		{
@@ -56,10 +57,12 @@ namespace comportswinforms
 			{
 				string selected_item_str = (string)comboBox1.SelectedItem;
 				_comPortsService.SelectPortAndStart(selected_item_str);
+				currentPort = selected_item_str;
 			}
 			catch
 			{
 				MessageBox.Show("This port is busy.");
+				comboBox1.SelectedItem = currentPort;
 			}
 		}
 
